@@ -1,0 +1,23 @@
+# Domain for the certificate
+DOMAIN="mydomain.com"
+
+# Email used for registration and recovery contact
+EMAIL="myemail@gmail.com"
+
+# Path where this tool is
+ABSPATH="/home/myuser"
+
+SSL=${ABSPATH}/nginx/ssl"
+
+# Path of where certs are generated
+SSL_CERT_DIR=${SSL}/certs
+# Path that certbot needs but don't use!?
+SSL_LIB=${SSL}/lib
+# Path where certbot writes the challenge file, it is served at port 80
+SSL_WEBROOT=${SSL}/webroot
+
+# Path where certs are copied to be used by Nginx
+SSL_CERT_CURRENT=${SSL}/current_certs
+
+# Nginx conf file
+NGINX_CONFIG="/home/aus/nginx/nginx.conf"
