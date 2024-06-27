@@ -8,5 +8,5 @@ podman run -it --rm --name certbot \
     -v "${SSL_WEBROOT}:/var/www/html" \
     certbot/certbot certonly \
     --webroot -w /var/www/html -d ${DOMAIN} \
-    --email ${EMAIL} --agree-tos --no-eff-email
+    --email ${EMAIL} --agree-tos --no-eff-email -v
 
