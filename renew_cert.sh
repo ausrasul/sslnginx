@@ -1,5 +1,5 @@
 #!/bin/bash
-source /home/aus/nginx/conf.sh
+source "$(dirname "$0")/conf.sh"
 
 # Start a Certbot container using Podman
 podman run -it --rm --name certbot \
