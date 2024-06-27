@@ -1,5 +1,5 @@
 # Domain for the certificate
-DOMAIN="mydomain.com"
+export DOMAIN="mydomain.com"
 
 # Email used for registration and recovery contact
 EMAIL="myemail@gmail.com"
