@@ -20,4 +20,4 @@ SSL_WEBROOT=${SSL}/webroot
 SSL_CERT_CURRENT=${SSL}/current_certs
 
 # Nginx conf file
-NGINX_CONFIG="${ABSPATH}/nginx/nginx.conf"
+NGINX_CONFIG="${ABSPATH}/nginx.conf"
