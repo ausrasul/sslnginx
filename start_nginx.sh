@@ -10,7 +10,11 @@ NGINX_CONFIG_COMPILED="$(dirname "$0")/nginx.conf"
 
 # Define the path to your local Nginx configuration file
 
-cp ${SSL_CERT_DIR}/live/*/* ${SSL_CERT_CURRENT}/
+if [ -d "${SSL_CERT_DIR}/live" ]; then
+	cp ${SSL_CERT_DIR}/live/*/* ${SSL_CERT_CURRENT}/
+else
+	echo "Warning: Couldn't find letsencrypt certs under ${SSL_CERT_DIR}/live"
+fi
 
 # Process nginx.conf.template with environment variables
 export ${DOMAIN}
