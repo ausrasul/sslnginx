@@ -7,7 +7,7 @@ EMAIL="myemail@gmail.com"
 # Path where this tool is
 ABSPATH="/home/myuser"
 
-SSL=${ABSPATH}/nginx/ssl"
+SSL="${ABSPATH}/nginx/ssl"
 
 # Path of where certs are generated
 SSL_CERT_DIR=${SSL}/certs
