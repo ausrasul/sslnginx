@@ -8,16 +8,21 @@ CONTAINER_NAME="nginx_container"
 NGINX_CONFIG_SRC="$(dirname "$0")/nginx.conf.src"
 NGINX_CONFIG_COMPILED="$(dirname "$0")/nginx.conf"
 
-# Define the path to your local Nginx configuration file
+# Copy certs from Let's Encrypt live directory to current_certs.
+# The live directory is owned by root (created by certbot container),
+# so we use a container to perform the copy.
 
 if [ -d "${SSL_CERT_DIR}/live" ]; then
-	cp ${SSL_CERT_DIR}/live/*/* ${SSL_CERT_CURRENT}/
+	$CONTAINER_ENGINE run --rm \
+		-v "${SSL_CERT_DIR}:/etc/letsencrypt:ro" \
+		-v "${SSL_CERT_CURRENT}:/out" \
+		alpine sh -c 'cp /etc/letsencrypt/live/*/* /out/ 2>/dev/null'
 else
 	echo "Warning: Couldn't find letsencrypt certs under ${SSL_CERT_DIR}/live"
 fi
 
 # Process nginx.conf.template with environment variables
-export ${DOMAIN}
+export DOMAIN
 envsubst '$DOMAIN' < ${NGINX_CONFIG_SRC} > ${NGINX_CONFIG_COMPILED}
 
 # Stop and remove the Docker/Podman container if it already exists

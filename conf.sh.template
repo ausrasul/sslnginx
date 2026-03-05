@@ -1,5 +1,5 @@
 # Virtualization engine
-CONTAINER_ENGINE=podman
+CONTAINER_ENGINE=docker
 
 # Domain for the certificate
 export DOMAIN="mydomain.com"
