@@ -1,13 +1,16 @@
+# Virtualization engine
+CONTAINER_ENGINE=podman
+
 # Domain for the certificate
 export DOMAIN="mydomain.com"
 
 # Email used for registration and recovery contact
 EMAIL="myemail@gmail.com"
 
-# Path where this tool is
+# Path where this tool is (on the host not in container)
 ABSPATH="/home/myuser"
 
-SSL="${ABSPATH}/nginx/ssl"
+SSL="${ABSPATH}/ssl"
 
 # Path of where certs are generated
 SSL_CERT_DIR=${SSL}/certs
