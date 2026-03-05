@@ -1,6 +1,11 @@
 events {}
 http {
   client_max_body_size 0;
+
+  # Rate limiting zones
+  limit_req_zone $binary_remote_addr zone=general:10m rate=2r/s;
+  limit_req_zone $binary_remote_addr zone=websocket:10m rate=1r/s;
+
   server {
     listen 80;
     server_name ${DOMAIN};
@@ -22,6 +27,8 @@ http {
     underscores_in_headers on;
 
     location / {
+      limit_req zone=general burst=20 nodelay;
+      limit_req_status 429;
       proxy_pass http://${DOMAIN}:8080;
       proxy_set_header Host $host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -32,6 +39,8 @@ http {
     }
 
     location /api/v1/websocket/ {
+        limit_req zone=websocket burst=2 nodelay;
+        limit_req_status 429;
         proxy_pass https://${DOMAIN}:8446/api/v1/websocket/;
 
         # WebSocket specific headers
